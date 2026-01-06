@@ -1,0 +1,10 @@
+.nav-item {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.nav-item:hover {
+  background: #f9fafb;
+  color: #16a34a;
+}

@@ -1,1 +1,95 @@
-<p>testimonials works!</p>
+<section class="relative py-12 md:py-16 mx-auto overflow-x-hidden bg-[#F6FBEF]">
+
+  <!-- GRID BACKDROP -->
+  <div
+    class="absolute inset-0 z-0 pointer-events-none"
+    style="
+      background-image:
+        linear-gradient(to right, rgba(127,178,65,0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(127,178,65,0.25) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 75%);
+      -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 75%);
+      opacity: 0.25;
+    ">
+  </div>
+
+  <!-- HEADING -->
+  <div class="text-center mb-12 relative z-10">
+    <h2 class="text-4xl md:text-6xl font-extrabold text-[#102F52]">
+      Hear what our <span class="text-[#7FB241]">Customers say</span>
+    </h2>
+    <p class="text-sm md:text-lg font-semibold mt-2 text-[#102F52]/80">
+      Loved by Our Clients. Trusted Across India.
+    </p>
+  </div>
+
+  <!-- SLIDER -->
+  <div class="relative z-10 flex items-center justify-center gap-6 md:gap-10">
+
+    @for (t of visibleTestimonials; track $index) {
+      <article
+        class="flex flex-col justify-between
+               flex-none w-[350px] sm:w-[300px] md:w-[360px] lg:w-[400px]
+               min-h-[300px] lg:min-h-[320px]
+               rounded-3xl bg-[#f6fdf2]
+               transition-all duration-500 ease-out
+               transform-gpu will-change-transform"
+        [ngClass]="getTestimonialClass($index)"
+      >
+
+        <div class="text-[#7FB241]/40 text-4xl md:text-5xl">"</div>
+
+        <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-4">
+          {{ t.text }}
+        </p>
+
+        <div class="flex items-center gap-3">
+          <img
+            [src]="t.avatar"
+            class="w-10 h-10 rounded-full object-cover"
+          />
+          <div>
+            <h4 class="text-sm font-semibold text-[#102F52]">
+              {{ t.name }}
+            </h4>
+            <p class="text-xs text-gray-500">
+              {{ t.role }}
+            </p>
+          </div>
+        </div>
+
+      </article>
+    }
+
+  </div>
+
+  <!-- NAV BUTTONS -->
+  <div class="flex justify-center gap-4 mt-10 relative z-10">
+    <button
+      (click)="prevSlide()"
+      class="w-10 h-10 rounded-full bg-white border border-[#7FB241]/40
+             hover:bg-[#7FB241]/10 transition">
+      ‹
+    </button>
+
+    <button
+      (click)="nextSlide()"
+      class="w-10 h-10 rounded-full bg-white border border-[#7FB241]/40
+             hover:bg-[#7FB241]/10 transition">
+      ›
+    </button>
+  </div>
+
+  <!-- DOTS -->
+  <div class="flex justify-center mt-6 gap-3 relative z-10">
+    @for (t of testimonials; track $index) {
+      <button
+        (click)="goToSlide($index)"
+        class="h-2 rounded-full transition-all duration-300"
+        [ngClass]="getDotClass($index)">
+      </button>
+    }
+  </div>
+
+</section>
