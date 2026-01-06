@@ -1,56 +1,74 @@
-<nav
-  class="sticky top-0 z-50 transition-all duration-300"
-  [ngClass]="isSticky
+<nav class="sticky top-0 z-50 transition-all duration-300" [ngClass]="isSticky
     ? 'bg-[#F6FBEF]/80 backdrop-blur-xl border-b border-gray-400/30 shadow-sm'
     : 'bg-[#F6FBEF]'">
-  <div class="max-w-7xl mx-auto px-6">
+
+  <div class="max-w-7xl mx-auto px-6 relative">
     <div class="flex items-center justify-between h-16">
 
-      <!-- Logo -->
+      <!-- LOGO -->
       <div class="flex items-center gap-2 cursor-pointer">
-        <img src="assets/logo-2.png" alt="Brand Logo" class="h-14  ">
+        <img src="assets/logo-2.png" alt="Brand Logo" class="h-14">
       </div>
 
-      <!-- Menu -->
+      <!-- DESKTOP MENU -->
       <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
-        <li class="hover:text-[#7FB241] cursor-pointer">Home</li>
-        <li class="hover:text-[#7FB241] cursor-pointer">About</li>
-        <li class="hover:text-[#7FB241] cursor-pointer">Services</li>
-        <li class="hover:text-[#7FB241] cursor-pointer">Earnings</li>
-        <li class="hover:text-[#7FB241] cursor-pointer">Contact</li>
+        <li class="nav-item">Home</li>
+        <li class="nav-item">About</li>
+        <li class="nav-item">Services</li>
+        <li class="nav-item">Earnings</li>
+        <li class="nav-item">Contact</li>
       </ul>
 
-      <!-- CTA -->
-      <button
-        class="hidden md:inline-flex items-center px-6 py-2 rounded-md
+      <!-- DESKTOP CTA -->
+      <button class="hidden md:inline-flex items-center justify-center
+               px-6 py-2 rounded-md
                bg-[#7FB241] text-white text-sm font-semibold
-               hover:bg-[#6aa52f] transition">
+               hover:bg-[#6aa52f]
+               transition-all duration-200">
         Get Discount Coupon
       </button>
 
-      <!-- Mobile -->
-      <button class="md:hidden p-2" (click)="toggleMenu()">
-        <svg class="w-6 h-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      <!-- MOBILE TOGGLE -->
+      <button class="md:hidden p-2 rounded-md hover:bg-black/5 transition" (click)="toggleMenu()">
 
+        @if (!isOpen) {
+        <!-- Hamburger -->
+        <svg class="w-6 h-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        }
+
+        @if (isOpen) {
+        <!-- Cross -->
+        <svg class="w-6 h-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+        }
+      </button>
     </div>
 
-    <!-- Mobile Menu -->
-    <div class="md:hidden overflow-hidden transition-all duration-300"
-      [ngClass]="isOpen ? 'max-h-64' : 'max-h-0'">
-      <ul class="flex flex-col gap-3 py-4 text-sm text-gray-700">
-        <li>Home</li>
-        <li>About</li>
-        <li>Services</li>
-        <li>Earnings</li>
-        <li>Contact</li>
-        <button class="mt-2 w-full py-2 bg-[#7FB241] text-white rounded-md">
+    <!-- MOBILE MENU (ABSOLUTE → NO PUSH) -->
+    <div class="md:hidden absolute left-0 top-full w-full
+             bg-[#F6FBEF]
+             border-t border-gray-200
+             shadow-md
+             transition-all duration-300 origin-top" [ngClass]="isOpen
+        ? 'max-h-80 opacity-100 scale-y-100'
+        : 'max-h-0 opacity-0 scale-y-95 overflow-hidden'">
+
+      <ul class="flex flex-col gap-3 px-6 py-4 text-sm font-medium text-gray-700">
+        <li class="cursor-pointer">Home</li>
+        <li class="cursor-pointer">About</li>
+        <li class="cursor-pointer">Services</li>
+        <li class="cursor-pointer">Earnings</li>
+        <li class="cursor-pointer">Contact</li>
+        <button class="mt-2 w-full py-3 rounded-md
+                 bg-[#7FB241] text-white font-semibold
+                 hover:bg-[#6aa52f] transition">
           Get Appointment
         </button>
       </ul>
+
     </div>
   </div>
 </nav>
