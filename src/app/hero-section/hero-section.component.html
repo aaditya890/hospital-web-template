@@ -53,70 +53,116 @@
   </div>
 </section>
 
-
-<section class="bg-[#F6FBEF] py-20">
+<section class="bg-[#F6FBEF] py-16 md:py-24 overflow-x-hidden">
   <div class="max-w-7xl mx-auto px-6
-           grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+           grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-    <!-- LEFT IMAGE -->
-    <div class="w-full">
-      <img src="https://images.pexels.com/photos/32213424/pexels-photo-32213424.jpeg" alt="Healthcare Service"
-        class="w-full h-full object-cover rounded-3xl shadow-lg" />
+    <!-- LEFT IMAGE (mobile pe niche jayegi) -->
+    <div class="relative order-2 lg:order-1 w-full flex justify-center p-3 md:p-0">
+
+      <!-- soft background glow -->
+      <div class="absolute -z-10 w-80 h-80 rounded-full
+               bg-[#7FB241]/20 blur-3xl">
+      </div>
+      <div class="relative w-full flex justify-center">
+
+        <!-- MAIN DOCTOR IMAGE -->
+        <img src="https://images.pexels.com/photos/32213424/pexels-photo-32213424.jpeg" alt="Our Doctors"
+          class="w-full h-96 max-w-xl rounded-3xl object-cover shadow-xl" />
+
+        <!-- TOP LEFT EXPERIENCE BADGE -->
+        <div class="absolute -top-6 -left-6 bg-[#7FB241] md:w-40 md:h-40
+           text-white rounded-2xl px-3 py-2 shadow-lg flex items-center flex-col justify-center">
+
+          <p class="text-3xl font-bold leading-none">15+</p>
+          <p class="text-xs mt-1 leading-snug font-semibold text-center">
+            Years of<br />Experience
+          </p>
+        </div>
+
+        <!-- BOTTOM RIGHT SECONDARY IMAGE -->
+        <div class="absolute bottom-8 -right-8 md:-right-12 bg-white
+           rounded-2xl p-2 shadow-lg">
+
+          <img src="https://images.pexels.com/photos/6129683/pexels-photo-6129683.jpeg" alt="Doctor Consultation"
+            class="w-20 h-20 md:w-40 md:h-40 rounded-xl object-cover" />
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- RIGHT CONTENT -->
-    <div>
-      <div class="flex items-center justify-center flex-col mt-5">
+    <!-- RIGHT CONTENT (mobile pe upar rahega) -->
+    <div class="order-1 lg:order-2">
+
+      <!-- TOP CONTENT -->
+      <div class="flex items-center text-center flex-col">
+
         <!-- Tag -->
-        <span class="inline-block mb-4 px-4 py-1 text-xs font-medium rounded-full
-               bg-gray-100 text-gray-600 text-center">
+        <span class="inline-block mb-4 px-4 py-1 text-xs font-semibold rounded-full
+                 bg-white text-[#7FB241] shadow-sm">
           Services
         </span>
 
         <!-- Heading -->
-        <h2 class="text-3xl md:text-5xl font-semibold leading-tight
-               text-[#102F52] text-center">
-          Comprehensive <br />Healthcare
+        <h2 class="text-3xl md:text-5xl font-semibold leading-tight text-[#102F52]">
+          Comprehensive <br />
+          Healthcare
           <span class="text-[#7FB241]"> Services</span>
-         
         </h2>
 
         <!-- Description -->
-        <p class="mt-4 text-gray-500 max-w-lg text-sm text-center">
+        <p class="mt-4 text-gray-500 max-w-xl text-sm md:text-base">
           At Medicia Health, we combine compassionate care with advanced
-          medical technology to give you the best treatment experience.
+          medical technology to deliver trusted and patient-centric treatment.
         </p>
 
         <!-- CTA -->
-        <button class="mt-6 px-6 py-3 rounded-lg bg-[#7FB241] text-white
-               text-sm font-medium hover:bg-[#6b9637] transition">
+        <button class="mt-7 px-7 py-3 rounded-xl bg-[#7FB241] text-white
+                 text-sm font-semibold hover:bg-[#6b9637]
+                 hover:shadow-lg transition">
           See All Services
         </button>
       </div>
-      <!-- Service Cards -->
-      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-        <div *ngFor="let service of services" class="bg-[#f6fdf2] rounded-2xl p-6 shadow-sm
-                 hover:shadow-md transition">
+      <!-- SERVICE CARDS -->
+      <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div *ngFor="let service of services; let i = index" class="group bg-white rounded-2xl p-6
+           border transition-all duration-300
+           shadow-sm hover:shadow-md
+           hover:-translate-y-1" [ngClass]="
+      i === 0
+        ? 'border-[#7FB241]'
+        : 'border-[#7FB241]/10 hover:border-[#7FB241]'
+    ">
 
-          <!-- Icon -->
-          <div class="w-10 h-10 rounded-lg bg-purple-100
-                   flex items-center justify-center text-[#7FB241] mb-4">
-            {{ service.icon }}
+          <!-- ICON -->
+          <div class="w-12 h-12 rounded-xl
+             bg-[#7FB241]/10
+             flex items-center justify-center
+             text-[#7FB241] mb-4
+             transition-transform duration-300
+             group-hover:scale-110">
+
+            <span class="flex items-center justify-center" [innerHTML]="service.icon">
+            </span>
+
           </div>
 
-          <!-- Title -->
-          <h4 class="font-semibold text-gray-900">
+          <!-- TITLE -->
+          <h4 class="text-lg font-semibold text-[#102F52]">
             {{ service.title }}
           </h4>
 
-          <!-- Description -->
-          <p class="mt-2 text-sm text-gray-500">
+          <!-- DESCRIPTION -->
+          <p class="mt-2 text-sm text-gray-500 leading-relaxed">
             {{ service.description }}
           </p>
-        </div>
 
+        </div>
       </div>
+
     </div>
+
   </div>
 </section>
